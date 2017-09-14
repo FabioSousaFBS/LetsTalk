@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#ECDB00</color>
+    <color name="colorPrimaryDark">#FFA500</color>
+    <color name="colorAccent">#000</color>
+    <color name="cor_padrao">#ffd700</color>
+    <color name="cor_botao_padrao">#ff8c00</color>
+    <color name="corPrimaria">#DAA520</color>
+
+    <color name="indicadorCor">#3d958a</color>
+    <color name="CorSeparadorPadrao">#CCCCCC</color>
+
+
+</resources>

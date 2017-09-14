@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "962494930286",
+    "firebase_url": "https://lets-talk-7e459.firebaseio.com",
+    "project_id": "lets-talk-7e459",
+    "storage_bucket": "lets-talk-7e459.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:962494930286:android:09813210c7496dbd",
+        "android_client_info": {
+          "package_name": "letstalk.projetos.com.letstalk"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "962494930286-pcb9hroja32cv75j1muabnrqrki5fno4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "letstalk.projetos.com.letstalk",
+            "certificate_hash": "44a261ad973decf4bfe7abcb2b7e27f19fdb764b"
+          }
+        },
+        {
+          "client_id": "962494930286-gvje2reih1bdamqouq2su41ish3has0g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBa-kl27f8eNZsuvzEBdk74pPOminNhUsg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "962494930286-gvje2reih1bdamqouq2su41ish3has0g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

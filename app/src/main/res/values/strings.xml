@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">LetsTalk</string>
+    <string name="botao_logar">Logar</string>
+    <string name="texto_cadastro">Não tem conta? Cadastre-se.</string>
+
+    <string name="item_sair">Sair</string>
+    <string name="item_configuracoes">Configurações</string>
+    <string name="item_pesquisar">Pesquisar</string>
+    <string name="item_adicionar">Adicionar</string>
+
+    <string name="text_fragment_A">Esta é a Fragment A</string>
+    <string name="text_fragment_B">Esta é a Fragment B</string>
+
+    <string-array name="tab_titulos">
+        <item>Conversas</item>
+        <item>Contatos</item>
+    </string-array>
+
+</resources>
