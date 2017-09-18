@@ -1,11 +1,13 @@
 package letstalk.projetos.com.letstalk.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -17,9 +19,11 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import letstalk.projetos.com.letstalk.R;
+import letstalk.projetos.com.letstalk.activity.ConversaActivity;
 import letstalk.projetos.com.letstalk.adapter.ContatoAdapter;
 import letstalk.projetos.com.letstalk.adapter.ConversaAdapter;
 import letstalk.projetos.com.letstalk.config.ConfiguracaoFirebase;
+import letstalk.projetos.com.letstalk.helper.Base64Custom;
 import letstalk.projetos.com.letstalk.helper.Preferencias;
 import letstalk.projetos.com.letstalk.model.Contato;
 import letstalk.projetos.com.letstalk.model.Conversa;
@@ -93,6 +97,21 @@ public class FragmentConversas  extends Fragment {
 
             }
         };
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ConversaActivity.class);
+
+                Conversa conversa = conversas.get(position);
+                intent.putExtra("nome", conversa.getNome());
+                String email = Base64Custom.DecodificarBase64(conversa.getIdUsuario());
+                intent.putExtra("email", email);
+
+                startActivity(intent);
+
+            }
+        });
 
         return view;
     }

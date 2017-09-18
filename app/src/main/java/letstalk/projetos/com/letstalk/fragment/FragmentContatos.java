@@ -1,5 +1,6 @@
 package letstalk.projetos.com.letstalk.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import android.support.v4.app.Fragment;
@@ -17,6 +18,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import letstalk.projetos.com.letstalk.R;
+import letstalk.projetos.com.letstalk.activity.ConversaActivity;
 import letstalk.projetos.com.letstalk.adapter.ContatoAdapter;
 import letstalk.projetos.com.letstalk.config.ConfiguracaoFirebase;
 import letstalk.projetos.com.letstalk.helper.Base64Custom;
@@ -37,14 +39,6 @@ public class FragmentContatos extends Fragment {
         // Required empty public constructor
     }
 
-    /*@Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-
-        return inflater.inflate(R.layout.fragment_contatos, container, false);
-    }*/
-
     @Override
     public void onStart() {
         super.onStart();
@@ -61,42 +55,40 @@ public class FragmentContatos extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater,  ViewGroup container,
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        //ISTANCIA O ARRAY DE CONTATOS
+        //instanciar array contatos
         contatos = new ArrayList<>();
 
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contatos, container, false);
 
         listView = (ListView) view.findViewById(R.id.lv_contatos);
-        adapter = new ContatoAdapter(getActivity(), contatos);
+        /*adapter = new ArrayAdapter(
+                getActivity(), R.layout.lista_contato, contatos
+        );*/
 
+        adapter = new ContatoAdapter(getActivity(), contatos);
         listView.setAdapter(adapter);
 
-
-        //RECUPERA DADOS DO USER LOGADO
-
+        //RECUPERAR CONTATOS
         Preferencias preferencias = new Preferencias(getActivity());
-        String identificadorUserLogado = preferencias.getIdentificador();
+        String identificadoruserLogado = preferencias.getIdentificador();
 
-        firebase = ConfiguracaoFirebase.getFirebase();
-        firebase = firebase.child("contatos").child(identificadorUserLogado);
+        firebase = ConfiguracaoFirebase.getFirebase().child("contatos").child(identificadoruserLogado);
 
-        //ATIVA O EVENTLITENER PARA MONITORAR SE HÁ UM NOVO CONTATO NA LISTA.
         valueEventListenerContato = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                //LIMPA A LISTA PARA NÃO DUPLICAR INFORMAÇÕES
+
+                //Limpar lista
                 contatos.clear();
 
-                //lista os dados
-                for(DataSnapshot dados : dataSnapshot.getChildren()){
+                //Listar contatos
+                for(DataSnapshot dados: dataSnapshot.getChildren()){
                     Contato contato = dados.getValue(Contato.class);
                     contatos.add(contato);
                 }
-
-                //NOTIFICA O ADAPTER DO LISTVIEW DE CONTATOS QUE HOUVE ALTERAÇÕES
                 adapter.notifyDataSetChanged();
             }
 
@@ -105,6 +97,24 @@ public class FragmentContatos extends Fragment {
 
             }
         };
+
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getActivity(), ConversaActivity.class);
+
+                //recupera nome e email
+
+                Contato contato = contatos.get(position);
+
+                intent.putExtra("nome", contato.getNome());
+                intent.putExtra("email", contato.getEmail());
+
+                startActivity(intent);
+            }
+        });
+
 
         return view;
     }

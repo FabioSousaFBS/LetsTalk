@@ -46,8 +46,6 @@ public class MainActivity extends AppCompatActivity {
 
     private String identificadorContato;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
