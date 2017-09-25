@@ -7,6 +7,7 @@ public class Mensagem {
     private String mensagem;
 
     public Mensagem() {
+
     }
 
     public String getIdUsuario() {

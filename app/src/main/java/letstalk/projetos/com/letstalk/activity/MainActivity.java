@@ -63,7 +63,6 @@ public class MainActivity extends AppCompatActivity {
 
         autenticacao = ConfiguracaoFirebase.getFirebaseAutenticacao();
 
-
     }
 
 

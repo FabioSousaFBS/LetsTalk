@@ -11,7 +11,6 @@ import letstalk.projetos.com.letstalk.helper.Preferencias;
 import letstalk.projetos.com.letstalk.model.Conversa;
 import letstalk.projetos.com.letstalk.model.Mensagem;
 
-import android.support.v7.widget.*;
 import android.view.View;
 import android.widget.*;
 
@@ -24,13 +23,13 @@ import java.util.ArrayList;
 
 public class ConversaActivity extends AppCompatActivity {
 
-    private EditText edtMensagemn;
-    private ImageView btnMensagem;
+    private EditText edtMensagem;
+    private ImageButton btnMensagem;
     private Toolbar toolbar;
 
     private ListView listView;
     private ArrayList<Mensagem> mensagens;
-    private ArrayAdapter<Mensagem> adapter;
+    private ArrayAdapter<Mensagem > adapter;
 
     private DatabaseReference firebase;
     private ValueEventListener valueEventListener;
@@ -50,9 +49,9 @@ public class ConversaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_conversa);
 
         toolbar = (Toolbar) findViewById(R.id.tb_conversa);
-        edtMensagemn = (EditText) findViewById(R.id.edtMensagem);
-        btnMensagem = (ImageButton) findViewById(R.id.btnEnviarMensagem);
-        listView = (ListView) findViewById(R.id.lv_conversas);
+        edtMensagem = (EditText) findViewById(R.id.edtMensagem);
+        btnMensagem = (ImageButton) findViewById(R.id.btnEnviarConversa);
+        listView = (ListView) findViewById(R.id.lsvChat);
 
         //dados usuario logado
         final Preferencias preferencias = new Preferencias(ConversaActivity.this);
@@ -72,16 +71,16 @@ public class ConversaActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         //CONFIGURA LISTVIEW
-        mensagens = new ArrayList<>();
-        /*adapter = new ArrayAdapter(ConversaActivity.this,
+        /*mensagens = new ArrayList<>();
+        adapter = new ArrayAdapter(ConversaActivity.this,
                 android.R.layout.simple_list_item_1,
                 mensagens);
         listView.setAdapter(adapter);
         */
 
+        mensagens = new ArrayList<>();
         adapter = new MensagemAdapter(ConversaActivity.this,  mensagens);
         listView.setAdapter(adapter);
-
 
         //RECUPERAR MENSAGENS DO FIREBASE
         firebase = ConfiguracaoFirebase.getFirebase().child("mensagens")
@@ -114,7 +113,7 @@ public class ConversaActivity extends AppCompatActivity {
         btnMensagem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String textoMensagem = edtMensagemn.getText().toString();
+                String textoMensagem = edtMensagem.getText().toString();
 
                 if (textoMensagem.isEmpty()){
                     Toast.makeText(ConversaActivity.this, "Digite uma mensagem para enviar", Toast.LENGTH_SHORT).show();
@@ -155,7 +154,7 @@ public class ConversaActivity extends AppCompatActivity {
 
                     }
 
-                    edtMensagemn.setText("");
+                    edtMensagem.setText("");
                 }
 
             }

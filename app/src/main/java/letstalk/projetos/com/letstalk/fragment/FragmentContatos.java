@@ -105,7 +105,6 @@ public class FragmentContatos extends Fragment {
                 Intent intent = new Intent(getActivity(), ConversaActivity.class);
 
                 //recupera nome e email
-
                 Contato contato = contatos.get(position);
 
                 intent.putExtra("nome", contato.getNome());
